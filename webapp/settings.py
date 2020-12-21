@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.1.106']
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'water.apps.WaterConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

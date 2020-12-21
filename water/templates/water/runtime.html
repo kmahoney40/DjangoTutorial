@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+    <body>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+            {% csrf_token %}
+            <ul>
+                {% for day in run_time_list %}
+                    <input type="number" name="day0" value="{{ day.v1 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v2 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v3 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v4 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v5 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v6 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day0" value="{{ day.v7 }}" min="0" max="99" style="width: 50;">
+                    <a href="{% url 'water:edit' day.id %}">Edit.</a>
+                    <br>
+                {% endfor %}
+            </ul>
+
+        <a href="{% url 'water:index' %}">Return to water.</a>
+
+
+
+    </body>
+</html>

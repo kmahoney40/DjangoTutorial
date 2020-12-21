@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'water/style.css' %}">
+
+<html>
+    <head></head>
+    <body>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+        <ul>
+        
+            <li><a href="/water/runtime">Runtime</a></li>
+        
+        
+        </ul>
+
+    </body>
+</html>
