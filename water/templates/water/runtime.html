@@ -1,26 +1,30 @@
+{% load static %}
+
 <html>
+    <link rel="stylesheet" type="text/css" href="{% static 'water/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'water/raspberry_pi_icon_137263.png' %}"/>
+
     <head></head>
     <body>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+        <form action="{% url 'water:save' %}" method="post">
             {% csrf_token %}
             <ul>
                 {% for day in run_time_list %}
-                    <input type="number" name="day0" value="{{ day.v1 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v2 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v3 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v4 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v5 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v6 }}" min="0" max="99" style="width: 50;">
-                    <input type="number" name="day0" value="{{ day.v7 }}" min="0" max="99" style="width: 50;">
-                    <a href="{% url 'water:edit' day.id %}">Edit.</a>
+                    <input type="number" name="day{{day.day}}v1" value="{{ day.v1 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v2" value="{{ day.v2 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v3" value="{{ day.v3 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v4" value="{{ day.v4 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v5" value="{{ day.v5 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v6" value="{{ day.v6 }}" min="0" max="99" style="width: 50;">
+                    <input type="number" name="day{{day.day}}v7" value="{{ day.v7 }}" min="0" max="99" style="width: 50;">
                     <br>
                 {% endfor %}
+                <input type="submit" value="Save">
             </ul>
-
+        </form>
         <a href="{% url 'water:index' %}">Return to water.</a>
-
-
 
     </body>
 </html>

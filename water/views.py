@@ -28,27 +28,21 @@ class EditView(generic.DetailView):
     def get_queryset(self):
         return RunTimes.objects.filter(id=self.kwargs['pk'])
 
-    
-def save(request, runtimes_id):
-    
-    
-    
-    runtimes = get_object_or_404(RunTimes, pk=runtimes_id)
-    
-    # this gets the table (a row from the table) from the database. 
-    # The table has not been updated, the form has not been saves. We
-    # need to push the form into the table.
-    #rt = get_object_or_404(RunTimes, pk=runtimes_id)
-    runtimes.v1 = request.POST.get('v1')
-    runtimes.v2 = request.POST.get('v2')
-    runtimes.v3 = request.POST.get('v3')
-    runtimes.v4 = request.POST.get('v4')
-    runtimes.v5 = request.POST.get('v5')
-    runtimes.v6 = request.POST.get('v6')
-    runtimes.v7 = request.POST.get('v7')
-    runtimes.save(update_fields=['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7'])
-    
-    #transaction.commit()
-    #return RunTimes.objects.all().order_by('day')
-    #RunTimes.save()
+def save(request):
+    runtimes = RunTimes.objects.order_by('day')
+    #todo  days had better be 7 add error checking
+    days = runtimes.count()
+    for day in range(days):
+        run = get_object_or_404(RunTimes, day=day)
+        name = 'day' + str(day)
+        run.v1 = request.POST.get(name+'v1')
+        run.v2 = request.POST.get(name+'v2')
+        run.v3 = request.POST.get(name+'v3')
+        run.v4 = request.POST.get(name+'v4')
+        run.v6 = request.POST.get(name+'v5')
+        run.v6 = request.POST.get(name+'v6')
+        run.v7 = request.POST.get(name+'v7')
+        run.save()
+
     return HttpResponseRedirect(reverse('water:runtime'))
+    
