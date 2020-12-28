@@ -11,8 +11,10 @@
         <form action="{% url 'water:save' %}" method="post">
             {% csrf_token %}
             <ul>
-                {% for day in run_time_list %}
-                {% comment "Add a space before the manual line" %}
+                    {% for day in run_time_list %}
+                    {% comment %}
+                        "Add a space before the manual line"
+                    {% endcomment %}
                     {% if forloop.last %}
                         <br>
                     {% endif %}
