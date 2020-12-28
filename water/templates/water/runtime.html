@@ -12,6 +12,10 @@
             {% csrf_token %}
             <ul>
                 {% for day in run_time_list %}
+                {% comment "Add a space before the manual line" %}
+                    {% if forloop.last %}
+                        <br>
+                    {% endif %}
                     <input type="number" name="day{{day.day}}v1" value="{{ day.v1 }}" min="0" max="99" style="width: 50;">
                     <input type="number" name="day{{day.day}}v2" value="{{ day.v2 }}" min="0" max="99" style="width: 50;">
                     <input type="number" name="day{{day.day}}v3" value="{{ day.v3 }}" min="0" max="99" style="width: 50;">
@@ -21,9 +25,11 @@
                     <input type="number" name="day{{day.day}}v7" value="{{ day.v7 }}" min="0" max="99" style="width: 50;">
                     <br>
                 {% endfor %}
+
                 <input type="submit" value="Save">
             </ul>
         </form>
+
         <a href="{% url 'water:index' %}">Return to water.</a>
 
     </body>

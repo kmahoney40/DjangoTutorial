@@ -13,3 +13,14 @@ class RunTimes(models.Model):
     v6 = models.PositiveIntegerField(default=0)
     v7 = models.PositiveIntegerField(default=0)
     pub_date = models.DateTimeField('date published')
+
+class Manual(models.Model):
+    v1 = models.PositiveIntegerField(default=0)
+    v2 = models.PositiveIntegerField(default=0)
+    v3 = models.PositiveIntegerField(default=0)
+    v4 = models.PositiveIntegerField(default=0)
+    v5 = models.PositiveIntegerField(default=0)
+    v6 = models.PositiveIntegerField(default=0)
+    v7 = models.PositiveIntegerField(default=0)
+    pub_date = models.DateTimeField('date published')
+    
