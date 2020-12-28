@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.db import transaction
 from .models import RunTimes
-from .models import Manual
 
 class IndexView(generic.ListView):
     #model = RunTimes
@@ -14,12 +13,6 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return HttpResponse("WOOT")
 
-class ManualView(generic.ListView):
-    template_name = 'water/runtime.html'
-    context_object_name = 'manual_list'
-    
-    def get_queryset(self):
-        return Manual.objects.order_by('id')
 
 class RuntimeView(generic.ListView):
     #model = RunTimes
@@ -39,7 +32,7 @@ class EditView(generic.DetailView):
 
 def save(request):
     runtimes = RunTimes.objects.order_by('day')
-    #todo  days had better be 8 add error checking - 7 days plus id = 8, day = 7 for manual.
+    #todo  days had better be 8 add error checking - 8 days plus id = 8, day = 7 for manual.
     days = runtimes.count()
     for day in range(days):
         run = get_object_or_404(RunTimes, day=day)
@@ -53,18 +46,5 @@ def save(request):
         run.v7 = request.POST.get(name+'v7')
         run.save()
 
-    return HttpResponseRedirect(reverse('water:runtime'))
-    
-def manual(request):
-    manual = get_object_or_404(Manual, id=1)
-    manual.m1 = request.POST.get('v1')
-    manual.m2 = request.POST.get('v2')
-    manual.m3 = request.POST.get('v3')
-    manual.m4 = request.POST.get('v4')
-    manual.m5 = request.POST.get('v5')
-    manual.m6 = request.POST.get('v6')
-    manual.m7 = request.POST.get('v7')
-    manual.save()
-    
     return HttpResponseRedirect(reverse('water:runtime'))
     
