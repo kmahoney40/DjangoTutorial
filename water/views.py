@@ -3,7 +3,9 @@ from django.views import generic
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.db import transaction
+from django.utils import timezone
 from .models import RunTimes
+from .models import Temp
 
 class IndexView(generic.ListView):
     #model = RunTimes
@@ -47,4 +49,4 @@ def save(request):
         run.save()
 
     return HttpResponseRedirect(reverse('water:runtime'))
-    
+       
