@@ -12,7 +12,8 @@ class RunTimes(models.Model):
     v5 = models.PositiveIntegerField(default=0)
     v6 = models.PositiveIntegerField(default=0)
     v7 = models.PositiveIntegerField(default=0)
-    pub_date = models.DateTimeField('date published')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
          
 
 class Temp(models.Model):
@@ -21,4 +22,5 @@ class Temp(models.Model):
     t3 = models.DecimalField(max_digits=5, decimal_places=2)
     t4 = models.DecimalField(max_digits=5, decimal_places=2)
     t5 = models.DecimalField(max_digits=5, decimal_places=2)
-    pub_date = models.DateTimeField('date published')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
