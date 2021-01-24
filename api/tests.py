@@ -116,8 +116,14 @@ class ViewTestCase(TestCase):
     def test_api_can_create_a_runtimes(self):
         self.assertEqual(self.runtimes_response.status_code, status.HTTP_201_CREATED)
         
-    def test_api_can_modify_a_runtimes(self):
+    def test_api_can_update_a_runtimes(self):
         runtime = RunTimes.objects.order_by('day').first()
-        self.assertEqual(runtime.day,0)
-        
-        
+        runtimes_data = {'day':1}
+        response = self.client.put(
+            reverse('detailsruntimes', kwargs={'pk':runtime.id}),
+            runtimes_data,
+            format='json'
+            )
+        runtime = RunTimes.objects.order_by('day').first()
+        self.assertEqual(runtime.day, 1)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

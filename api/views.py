@@ -28,8 +28,14 @@ class CreateTempView(generics.ListCreateAPIView):
         serializer.save()
 
 class CreateRunTimesView(generics.ListCreateAPIView):
-    queryset = RunTimes.objects.all()
+    queryset = RunTimes.objects.all(
     serializer_class = RunTimesSerializer
 
     def perform_create(self, serializer):
         serializer.save()
+
+class DetailsRunTimesView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = RunTimes.objects.all()
+    serializer_class = RunTimesSerializer

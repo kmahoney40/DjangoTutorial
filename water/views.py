@@ -49,4 +49,3 @@ def save(request):
         run.save()
 
     return HttpResponseRedirect(reverse('water:runtime'))
-       

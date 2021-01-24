@@ -17,10 +17,10 @@ class RunTimes(models.Model):
          
 
 class Temp(models.Model):
-    t1 = models.DecimalField(max_digits=5, decimal_places=2)
-    t2 = models.DecimalField(max_digits=5, decimal_places=2)
-    t3 = models.DecimalField(max_digits=5, decimal_places=2)
-    t4 = models.DecimalField(max_digits=5, decimal_places=2)
-    t5 = models.DecimalField(max_digits=5, decimal_places=2)
+    t1 = models.DecimalField(max_digits=8, decimal_places=5)
+    t2 = models.DecimalField(max_digits=8, decimal_places=5)
+    t3 = models.DecimalField(max_digits=8, decimal_places=5)
+    t4 = models.DecimalField(max_digits=8, decimal_places=5)
+    t5 = models.DecimalField(max_digits=8, decimal_places=5)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
