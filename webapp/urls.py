@@ -21,7 +21,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('water/', include('water.urls')),
     path('admin/', admin.site.urls),
-    re_path(r'^', include('api.urls')),
+    re_path('temp/', include('api.urls')),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

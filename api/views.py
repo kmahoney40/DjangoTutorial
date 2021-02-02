@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from .serializers import BucketlistSerializer, TempSerializer, RunTimesSerializer
 from .models import Bucketlist
-#from ../water/models import Temp
-from water.views import Temp, RunTimes
+from water.models import Temp
+from water.views import RunTimes
 
 class CreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
@@ -28,7 +28,7 @@ class CreateTempView(generics.ListCreateAPIView):
         serializer.save()
 
 class CreateRunTimesView(generics.ListCreateAPIView):
-    queryset = RunTimes.objects.all(
+    queryset = RunTimes.objects.all()
     serializer_class = RunTimesSerializer
 
     def perform_create(self, serializer):
