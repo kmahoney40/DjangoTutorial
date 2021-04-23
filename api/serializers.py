@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Bucketlist
-from water.models import Temp, RunTimes
+from water.models import Temp, RunTimes, RunTimesAudit
 
 class BucketlistSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
@@ -23,3 +23,8 @@ class RunTimesSerializer(serializers.ModelSerializer):
         model = RunTimes
         fields = ('id', 'day', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7')
         read_only_fields = ('date_created', 'date_modified')
+
+class RunTimesAuditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RunTimesAudit
+        fields = ("id", "date_modified")

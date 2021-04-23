@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework import generics
-from .serializers import BucketlistSerializer, TempSerializer, RunTimesSerializer
+from .serializers import BucketlistSerializer, TempSerializer, RunTimesSerializer, RunTimesAuditSerializer
 from .models import Bucketlist
 from water.models import Temp
-from water.views import RunTimes
+from water.views import RunTimes, RunTimesAudit
 
 class CreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
@@ -39,3 +39,9 @@ class DetailsRunTimesView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = RunTimes.objects.all()
     serializer_class = RunTimesSerializer
+
+class DetailsRunTimesAuditView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+    
+    queryset = RunTimesAudit.objects.all()
+    serializer_class = RunTimesAuditSerializer

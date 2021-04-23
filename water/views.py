@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.db import transaction
 from django.utils import timezone
-from .models import RunTimes
+from .models import RunTimes, RunTimesAudit
 from .models import Temp
 
 class IndexView(generic.ListView):
@@ -32,10 +32,12 @@ class EditView(generic.DetailView):
     def get_queryset(self):
         return RunTimes.objects.filter(id=self.kwargs['pk'])
 
+
 def save(request):
     runtimes = RunTimes.objects.order_by('day')
     #todo  days had better be 8 add error checking - 8 days plus id = 8, day = 7 for manual.
     days = runtimes.count()
+
     for day in range(days):
         run = get_object_or_404(RunTimes, day=day)
         name = 'day' + str(day)
@@ -43,9 +45,9 @@ def save(request):
         run.v2 = request.POST.get(name+'v2')
         run.v3 = request.POST.get(name+'v3')
         run.v4 = request.POST.get(name+'v4')
-        run.v6 = request.POST.get(name+'v5')
+        run.v5 = request.POST.get(name+'v5')
         run.v6 = request.POST.get(name+'v6')
         run.v7 = request.POST.get(name+'v7')
         run.save()
-
+        
     return HttpResponseRedirect(reverse('water:runtime'))

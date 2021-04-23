@@ -15,7 +15,9 @@ class RunTimes(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
          
-
+class RunTimesAudit(models.Model):
+    date_modified = models.DateTimeField(auto_now=True)
+    
 class Temp(models.Model):
     t1 = models.DecimalField(max_digits=8, decimal_places=5)
     t2 = models.DecimalField(max_digits=8, decimal_places=5)

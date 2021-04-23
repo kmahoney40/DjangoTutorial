@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from rest_framework.urlpatterns import format_suffix_patterns
 #from .views import CreateView, DetailsView, CreateTempView, CreateRunTimesView, DetailsRunTimesView
-from .views import CreateView, DetailsView, DetailsRunTimesView, CreateRunTimesView, CreateTempView
+from .views import CreateView, DetailsView, DetailsRunTimesView, DetailsRunTimesAuditView, CreateRunTimesView, CreateTempView
 
 
 
@@ -14,6 +14,8 @@ urlpatterns = [
     re_path(r'^runtimes/$', CreateRunTimesView.as_view(), name="createruntimes"),
     #re_path(r'^save/(?P<pk>[0-9]+)$', DetailsRunTimesView.as_view(), name="detailsruntimes"),
     re_path(r'^runtimes/(?P<pk>[0-9]+)/$', DetailsRunTimesView.as_view(), name="runtimes"),
+
+    re_path(r'^runtimesaudit/(?P<pk>[0-9]+)/$', DetailsRunTimesAuditView.as_view(), name="detailsruntimesaudit"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
